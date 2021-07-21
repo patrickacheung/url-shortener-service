@@ -1,0 +1,26 @@
+{
+  "name": "url-shortener-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.mjs",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.31.0",
+    "eslint-config-google": "^0.14.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patrickacheung/url-shortener-service.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patrickacheung/url-shortener-service/issues"
+  },
+  "homepage": "https://github.com/patrickacheung/url-shortener-service#readme"
+}
