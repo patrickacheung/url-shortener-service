@@ -1,9 +1,14 @@
 import express from 'express';
 
+import indexRoutes from './routes/app/index.mjs';
+import apiRoutes from './routes/api/api.mjs';
+
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('hello world!');
+app.use('/', indexRoutes);
+app.use('/api', apiRoutes);
+app.use((req, res, next) => {
+  res.status(404).send('oh noes 404!');
 });
 
 app.listen(3000, () => {
