@@ -1,23 +1,36 @@
 import express from 'express';
+import validUrl from 'valid-url';
+import {nanoid} from 'nanoid';
 
 const router = new express.Router();
-const baseUrl = 'http://localhost:5000';
+const baseUrl = 'http://localhost:3000';
 
 router.post('/shorten', async (req, res) => {
-  const {longUrl} = req.body;
+  const {originalUrl} = req.body;
 
-  // check if longUrl is a valid url
+  if (!validUrl.isWebUri(originalUrl)) {
+    return res.status(400).json({
+      status: 'originalUrl is invalid',
+    });
+  }
 
-  // if valid, generate the short
+  const shortId = nanoid();
+  const shortenedUrl = baseUrl + '/' + shortId;
 
   res.json({
-    baseUrl: baseUrl,
-    longUrl: longUrl,
+    id: -1, // how do we generate a good id?...
+    shortened_url: shortenedUrl,
+    original_url: originalUrl,
   });
 });
 
-router.get('/get', (req, res) => {
-  res.send('i am get api');
+router.get('/urls/:id', (req, res) => {
+  // query from db. if valid return good response, else return bad response.
+  res.json({
+    id: req.params.id,
+    shortened_url: 'shortenedUrl',
+    original_url: 'originalUrl',
+  });
 });
 
 export default router;
