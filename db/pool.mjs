@@ -9,7 +9,7 @@ const pool = new Pool.Pool({
 });
 
 export function asdf() {
-  pool.query('SELECT NOW()', (err, res) => {
+  return pool.query('SELECT NOW()', (err, res) => {
     console.log(err, res);
     pool.end();
   });
