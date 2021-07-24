@@ -11,7 +11,6 @@ const pool = new Pool.Pool({
 export function asdf() {
   return pool.query('SELECT NOW()', (err, res) => {
     console.log(err, res);
-    pool.end();
   });
 };
 
