@@ -3,9 +3,9 @@ import validUrl from 'valid-url';
 import {nanoid} from 'nanoid';
 
 const router = new express.Router();
-const baseUrl = 'http://localhost:3000';
 
 router.post('/shorten', async (req, res) => {
+  const baseUrl = 'http://' + req.get('Host');
   const {originalUrl} = req.body;
 
   if (!validUrl.isWebUri(originalUrl)) {
