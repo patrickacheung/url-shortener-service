@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/patrickacheung/url-shortener-service/issues"
   },
-  "homepage": "https://github.com/patrickacheung/url-shortener-service#readme"
+  "homepage": "https://github.com/patrickacheung/url-shortener-service#readme",
+  "engines": {
+    "node": "^14.17.3"
+  }
 }
