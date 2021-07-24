@@ -4,6 +4,7 @@ import redirectRoute from './routes/redirect.mjs';
 import apiRoutes from './routes/api/api.mjs';
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use('/', redirectRoute);
@@ -14,6 +15,6 @@ app.use((req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('The application is running on port 3000!');
+app.listen(port, () => {
+  console.log('The application is running on port ' + port + '!');
 });
