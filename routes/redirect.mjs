@@ -7,8 +7,9 @@ const redirectQueryText = 'SELECT original_url FROM urls WHERE shortened_url = $
 
 router.get('/:code', async (req, res) => {
   const shortCode = req.params.code;
+  const shortUrl = 'http://' + req.get('Host') + '/' + shortCode;
   try {
-    const queryRes = await query(redirectQueryText, [shortCode]);
+    const queryRes = await query(redirectQueryText, [shortUrl]);
     if (queryRes.rows.length == 0) {
       return res.status(400).json({
         status: 'shortcode not found',
