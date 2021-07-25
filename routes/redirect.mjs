@@ -1,17 +1,27 @@
 import express from 'express';
 
-import {asdf, qwer} from '../db/pool.mjs';
+import {query} from '../db/pool.mjs';
 
 const router = new express.Router();
+const redirectQueryText = 'SELECT original_url FROM urls WHERE shortened_url = $1';
 
-router.get('/:code', (req, res) => {
-  // check if shortCode exists in postgres.
-  asdf();
-  qwer();
+router.get('/:code', async (req, res) => {
+  const shortCode = req.params.code;
+  try {
+    const queryRes = await query(redirectQueryText, [shortCode]);
+    if (queryRes.rows.length == 0) {
+      return res.status(400).json({
+        status: 'shortcode not found',
+      });
+    }
 
-  // if not return failure message + status code
-
-  res.redirect('https://www.wikipedia.org');
+    res.redirect(queryRes.rows[0].original_url);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      status: 'internal server error',
+    });
+  }
 });
 
 export default router;

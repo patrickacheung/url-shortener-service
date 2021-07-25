@@ -11,13 +11,3 @@ const pool = new Pool.Pool({
 export function query(text, params, callback) {
   return pool.query(text, params, callback);
 };
-
-export function asdf() {
-  return pool.query('SELECT NOW()', (err, res) => {
-    console.log(err, res);
-  });
-};
-
-export function qwer() {
-  console.log('qwer');
-};
