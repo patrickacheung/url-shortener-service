@@ -1,0 +1,185 @@
+{
+	"info": {
+		"_postman_id": "75bbad67-b8b8-4ef6-ac55-13a14ae173e3",
+		"name": "short url service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/api/shorten",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"originalUrl\": \"https://www.amazon.ca/dp/B0758L64L9/ref=ods_gw_tpr_d_h1_vicc_slcb_caEN?pf_rd_r=GJF6RH6AH9VWYGR6K5XW&pf_rd_p=08166102-df0c-4fdc-b67b-0a31572d2c33&pd_rd_r=d62dca0e-20c5-4ce5-9fd1-4230efe3045f&pd_rd_w=ks6TU&pd_rd_wg=j08oQ&ref_=pd_gw_unk\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/shorten",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"shorten"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/urls",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/urls/55",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"urls",
+						"55"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "-1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/DTNN_FkHFwB1rM1bMeNd0",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/DTNN_FkHFwB1rM1bMeNd0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"DTNN_FkHFwB1rM1bMeNd0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SHORTEN with PAYLOAD",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"originalUrl\": \"https://www.amazon.ca/dp/B0758L64L9/ref=ods_gw_tpr_d_h1_vicc_slcb_caEN?pf_rd_r=GJF6RH6AH9VWYGR6K5XW&pf_rd_p=08166102-df0c-4fdc-b67b-0a31572d2c33&pd_rd_r=d62dca0e-20c5-4ce5-9fd1-4230efe3045f&pd_rd_w=ks6TU&pd_rd_wg=j08oQ&ref_=pd_gw_unk\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://urlshortenerservice-env2.eba-uprcmvdm.us-west-2.elasticbeanstalk.com/api/shorten",
+					"protocol": "http",
+					"host": [
+						"urlshortenerservice-env2",
+						"eba-uprcmvdm",
+						"us-west-2",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"api",
+						"shorten"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REDIRECT by short code failure",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://urlshortenerservice-env2.eba-uprcmvdm.us-west-2.elasticbeanstalk.com/DTNN_FkHFwB1rM1bMeNd0",
+					"protocol": "http",
+					"host": [
+						"urlshortenerservice-env2",
+						"eba-uprcmvdm",
+						"us-west-2",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"DTNN_FkHFwB1rM1bMeNd0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REDIRECT by short code success",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://urlshortenerservice-env2.eba-uprcmvdm.us-west-2.elasticbeanstalk.com/lnaJFWCEUiwO-hWkRVugw",
+					"protocol": "http",
+					"host": [
+						"urlshortenerservice-env2",
+						"eba-uprcmvdm",
+						"us-west-2",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"lnaJFWCEUiwO-hWkRVugw"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://urlshortenerservice-env2.eba-uprcmvdm.us-west-2.elasticbeanstalk.com/api/urls/3",
+					"protocol": "http",
+					"host": [
+						"urlshortenerservice-env2",
+						"eba-uprcmvdm",
+						"us-west-2",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"api",
+						"urls",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
