@@ -41,12 +41,16 @@ router.get('/urls/:id', async (req, res) => {
   const id = req.params.id;
   try {
     const queryRes = await query(getQueryText, [id]);
-    console.log(queryRes);
+    if (queryRes.rows.length == 0) {
+      return res.status(400).json({
+        status: 'id not found',
+      });
+    }
 
     res.json({
-      id: req.params.id,
-      shortened_url: 'shortenedUrl',
-      original_url: 'originalUrl',
+      id: queryRes.rows[0].id,
+      shortened_url: queryRes.rows[0].shortened_url,
+      original_url: queryRes.rows[0].original_url,
     });
   } catch (err) {
     console.log(err);
