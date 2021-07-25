@@ -29,6 +29,7 @@ router.post('/shorten', async (req, res) => {
       original_url: originalUrl,
     });
   } catch (err) {
+    console.log(err);
     return res.status(500).json({
       status: 'internal server error',
     });
