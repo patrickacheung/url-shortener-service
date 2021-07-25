@@ -2,7 +2,11 @@ import express from 'express';
 import validUrl from 'valid-url';
 import {nanoid} from 'nanoid';
 
+import {query} from '../../db/pool.mjs';
+
 const router = new express.Router();
+const insertQueryText = 'INSERT INTO urls(shortened_url, original_url) VALUES($1, $2) RETURNING id';
+const getQueryText = 'SELECT * FROM urls WHERE id = $1';
 
 router.post('/shorten', async (req, res) => {
   const baseUrl = 'http://' + req.get('Host');
@@ -17,11 +21,18 @@ router.post('/shorten', async (req, res) => {
   const shortId = nanoid();
   const shortenedUrl = baseUrl + '/' + shortId;
 
-  res.json({
-    id: -1, // how do we generate a good id?...
-    shortened_url: shortenedUrl,
-    original_url: originalUrl,
-  });
+  try {
+    const res = await query(insertQueryText, [shortenedUrl, originalUrl]);
+    res.json({
+      id: res.rows[0],
+      shortened_url: shortenedUrl,
+      original_url: originalUrl,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      status: 'internal server error',
+    });
+  }
 });
 
 router.get('/urls/:id', (req, res) => {

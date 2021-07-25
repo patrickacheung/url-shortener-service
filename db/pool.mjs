@@ -8,6 +8,10 @@ const pool = new Pool.Pool({
   port: process.env.RDS_PORT
 });
 
+export function query(text, params, callback) {
+  return pool.query(text, params, callback);
+};
+
 export function asdf() {
   return pool.query('SELECT NOW()', (err, res) => {
     console.log(err, res);
