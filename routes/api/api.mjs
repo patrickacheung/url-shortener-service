@@ -31,19 +31,29 @@ router.post('/shorten', async (req, res) => {
     });
   } catch (err) {
     console.log(err);
-    return res.status(500).json({
+    res.status(500).json({
       status: 'internal server error',
     });
   }
 });
 
 router.get('/urls/:id', (req, res) => {
-  // query from db. if valid return good response, else return bad response.
-  res.json({
-    id: req.params.id,
-    shortened_url: 'shortenedUrl',
-    original_url: 'originalUrl',
-  });
+  const id = req.params.id;
+  try {
+    const queryRes = await query(getQueryText, [id]);
+    console.log(queryRes);
+
+    res.json({
+      id: req.params.id,
+      shortened_url: 'shortenedUrl',
+      original_url: 'originalUrl',
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      status: 'internal server error',
+    });
+  }
 });
 
 export default router;
