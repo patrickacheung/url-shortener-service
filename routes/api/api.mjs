@@ -37,7 +37,7 @@ router.post('/shorten', async (req, res) => {
   }
 });
 
-router.get('/urls/:id', (req, res) => {
+router.get('/urls/:id', async (req, res) => {
   const id = req.params.id;
   try {
     const queryRes = await query(getQueryText, [id]);
