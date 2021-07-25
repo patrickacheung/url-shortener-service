@@ -22,9 +22,10 @@ router.post('/shorten', async (req, res) => {
   const shortenedUrl = baseUrl + '/' + shortId;
 
   try {
-    const res = await query(insertQueryText, [shortenedUrl, originalUrl]);
-    return res.json({
-      id: res.rows[0],
+    const queryRes = await query(insertQueryText, [shortenedUrl, originalUrl]);
+    
+    res.json({
+      id: queryRes.rows[0],
       shortened_url: shortenedUrl,
       original_url: originalUrl,
     });
